@@ -56,10 +56,12 @@ int main(void)
             if (b == first || b == third || b == fourth) right_B++;
             if (c == first || c == second || c == fourth) right_B++;
             if (d == first || d == second || d == third) right_B++;//统计B
-            
+
             printf("本轮结果为%dA%dB\n", right_A, right_B);
-            if (turns == 10) 
+            if (turns == 10) {
                 printf("你已用光所有机会，游戏结束！\n");//到达十次，结束游戏
+                printf("正确的数字为%d%d%d%d\n", first, second, third, fourth);
+            }
             if (right_A == 4) {
                 printf("恭喜，你猜对了！\n");
                 break;
