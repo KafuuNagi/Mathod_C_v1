@@ -56,7 +56,7 @@ int main(void)
             if (b == first || b == third || b == fourth) right_B++;
             if (c == first || c == second || c == fourth) right_B++;
             if (d == first || d == second || d == third) right_B++;//统计B
-            //确定有几个B
+            
             printf("本轮结果为%dA%dB\n", right_A, right_B);
             if (turns == 10) 
                 printf("你已用光所有机会，游戏结束！\n");//到达十次，结束游戏
