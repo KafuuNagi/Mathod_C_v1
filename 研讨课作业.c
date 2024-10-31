@@ -5,19 +5,21 @@
 int main(void)
 {
     int first, second, third, fourth; // 四位随机数
-    int num,a,b,c,d,i;
+    int num, a, b, c, d, i;//处理输入量相关
+    int turns;//循环次数，控制10次后游戏结束
     int go_on = 1;                    // 判断程序是否继续进行
+    int right_A = 0, right_B = 0;//A和B的个数
+
+    srand(time(0));// 初始化随机数种子
 
     while (go_on == 1)
     {
-        // 初始化随机数种子
-        srand(time(0));
-
         printf("程序已生成了一个四位数。每个数都在1-9之间，且四个数字互不相同。\n");
         printf("请尝试将其猜出。如果你猜的数中有数字相同但位置不同，记作1个B;\n");
         printf("如果数字相同且位置相同，记作1个A。");
         printf("你有十次猜测机会。下面请开始你的猜测：\n");
 
+        /*do while出口条件循环，在检测条件时至少已循环一次*/
         do
         {
             first = 1 + rand() % 9;
@@ -25,22 +27,46 @@ int main(void)
             third = 1 + rand() % 9;
             fourth = 1 + rand() % 9; // 保证数字在1-9之间
         } while (first == second || first == third || first == fourth ||
-                 second == third || second == fourth || third == fourth);
+            second == third || second == fourth || third == fourth);
         // 确保数字不同
-        
-        i = (scanf("%d",&num));
-        a = num / 1000;
-        b = (num / 100) % 10;
-        c = (num / 10) % 10;
-        d = num % 10;
-        
-        if(i != 1 || num < 1234 || num > 9876
-        || a == b || a == c || a == d
-        || b == c || b == d || c == d){
-            printf("输入不正确！");
-            go_on = 0;
-            continue;
+
+        for (turns = 1; turns <= 10; turns++) {
+            right_A = 0, right_B = 0;
+            i = (scanf("%d", &num));
+            a = num / 1000;
+            b = (num / 100) % 10;
+            c = (num / 10) % 10;
+            d = num % 10;//拆分输入的四位数
+
+            if (i != 1 || num < 1234 || num > 9876
+                || a == b || a == c || a == d
+                || b == c || b == d || c == d) {
+                printf("输入不正确，请重新输入！\n");
+                turns--;
+                continue;
+            }//判断输入是否合规，若不合规则该次重来
+
+            if (a == first) right_A++;
+            if (b == second) right_A++;
+            if (c == third) right_A++;
+            if (d == fourth) right_A++;//统计A
+
+            if (a == second || a == third || a == fourth) right_B++;
+            if (b == first || b == third || b == fourth) right_B++;
+            if (c == first || c == second || c == fourth) right_B++;
+            if (d == first || d == second || d == third) right_B++;//统计B
+            //确定有几个B
+            printf("本轮结果为%dA%dB\n", right_A, right_B);
+            if (turns == 10) 
+                printf("您已用光所有机会，游戏结束！\n");//到达十次，结束游戏
+            if (right_A == 4) {
+                printf("恭喜，您猜对了！\n");
+                break;
+            }
         }
+        printf("您还要继续游戏吗？输入1再来一轮，输入0结束游戏：");
+        scanf("%d", &go_on);
+
     }
     return 0;
-}  
+}
