@@ -7,7 +7,7 @@ int main(void)
     int first, second, third, fourth; // 四位随机数
     int num, a, b, c, d, i;//处理输入量相关
     int turns;//循环次数，控制10次后游戏结束
-    int go_on = 1;                    // 判断程序是否继续进行
+    int go_on = 1;                    // 判断程序是否继续
     int right_A = 0, right_B = 0;//A和B的个数
 
     srand(time(0));// 初始化随机数种子
@@ -59,14 +59,16 @@ int main(void)
             //确定有几个B
             printf("本轮结果为%dA%dB\n", right_A, right_B);
             if (turns == 10) 
-                printf("您已用光所有机会，游戏结束！\n");//到达十次，结束游戏
+                printf("你已用光所有机会，游戏结束！\n");//到达十次，结束游戏
             if (right_A == 4) {
-                printf("恭喜，您猜对了！\n");
+                printf("恭喜，你猜对了！\n");
                 break;
             }
         }
-        printf("您还要继续游戏吗？输入0结束游戏，输入任意字符再来一轮：");
-        scanf("%d", &go_on);
+        printf("你还要继续游戏吗？输入1再来一轮，输入其它字符结束游戏：");
+        i = scanf("%d", &go_on);
+        if (i != 1)
+            break;
     }
     return 0;
 }
