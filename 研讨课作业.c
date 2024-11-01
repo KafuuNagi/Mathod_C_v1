@@ -40,7 +40,8 @@ int main(void)
 
             if (i != 1 || num < 1234 || num > 9876
                 || a == b || a == c || a == d
-                || b == c || b == d || c == d) {
+                || b == c || b == d || c == d
+                || b == 0 || c == 0 || d == 0)) {
                 printf("输入不正确，请重新输入！\n");
                 turns--;
                 while (getchar() != '\n');//清空输入缓存区
