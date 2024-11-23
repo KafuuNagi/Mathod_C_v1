@@ -44,7 +44,7 @@ int main(void)
                 || b == 0 || c == 0 || d == 0) {
                 printf("输入不正确，请重新输入！\n");
                 turns--;
-                while (getchar() != '\n');//清空输入缓存区
+                while (getchar() != '\n')//清空输入缓存区
                 continue;
             }//判断输入是否合规，若不合规则该次重来
 
