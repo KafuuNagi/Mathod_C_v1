@@ -59,7 +59,7 @@ int main(void)
             if (d == first || d == second || d == third) right_B++;//统计B
 
             printf("本轮结果为%dA%dB\n", right_A, right_B);
-            if (turns == 10) {
+            if (turns == 10 && right_A != 4) {
                 printf("你已用光所有机会，游戏结束！\n");//到达十次，结束游戏
                 printf("正确的数字为%d%d%d%d\n", first, second, third, fourth);
             }
